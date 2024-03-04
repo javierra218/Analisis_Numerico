@@ -45,7 +45,7 @@ namespace raices
         }
         else
         {
-            cout << "La raiz es: " << sol.raiz << endl;
+            cout << "La raiz es: " << setprecision(9)<< sol.raiz << endl;
         }
 
         size_t cantAproximaciones = sol.aproximaciones.size();

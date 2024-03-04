@@ -10,11 +10,12 @@ using raices::biseccion;
 
 int main (int argc, char *argv[]) {
 
-	string str_func="e^~(X)-ln(X)";
-	double xa= 1.0f; //extremo inferior
-	double xb= 1.5f; //extremo superior
-	double tol=1.0f; //error relativo porcentual
-	int n=100;
+	string str_func = "e^~(x)-ln(x)";
+	
+	double xa=1.0f;//extremo inferior
+	double xb=1.5f;//extremo superior
+	double tol=1.0f;//error relativo porcentual
+	int n = 100;//numero maximo de iteraciones
 
 	cout << "Funcion: " << str_func << endl;
 	cout << "Intervalo: [" << xa << " ... " << xb << "]" << endl;

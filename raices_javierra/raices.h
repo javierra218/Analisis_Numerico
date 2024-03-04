@@ -54,7 +54,7 @@ namespace raices
             return;
         }
 
-        cout<< "Aproximaciones" << cantAproximaciones << endl;
+        cout<< "Aproximaciones: " << cantAproximaciones << endl;
         cout << setw(15)<< "Anterior" << setw(3) << "   " << setw(15) << "Nuevo" << setw(3)<<"   "<<setw(20)<< "Error rel.porcent" <<endl;
 
         for (size_t i = 0; i < cantAproximaciones; i++)

@@ -5,8 +5,8 @@
 * @file
 * Arithmethic expression evaluator
 * C++ implementation of the Shunting Yard  Algorithm by E.W. Dijkstra.
-* Implementación en C++ del algoritmo Shunting Yard propuesto por E. W. Dijkstra.
-* Adaptado para aceptar variables, funciones personalizadas y el operador unario de negación "~"
+* Implementaciï¿½n en C++ del algoritmo Shunting Yard propuesto por E. W. Dijkstra.
+* Adaptado para aceptar variables, funciones personalizadas y el operador unario de negaciï¿½n "~"
 * @author Erwin Meza Vega <emezav@unicauca.edu.co>
 * @copyright MIT License
 */
@@ -72,16 +72,16 @@ using std::ostringstream;
 
 
 /**
-* @brief Función personalizada sobre una variable real
+* @brief Funciï¿½n personalizada sobre una variable real
 */
 struct CustomFunction {
-	string name; /*!< Nombre de la función */
-	function<double(double)> f; /*!< Función a aplicar a la variable */
+	string name; /*!< Nombre de la funciï¿½n */
+	function<double(double)> f; /*!< Funciï¿½n a aplicar a la variable */
 	
 	/**
-	* @brief Evalóa la función en x
+	* @brief Evalï¿½a la funciï¿½n en x
 	* @param x Valor de la variable
-	* @return Valor de la función en x
+	* @return Valor de la funciï¿½n en x
 	*/
 	double operator()(double x) {
 		return f(x);
@@ -89,7 +89,7 @@ struct CustomFunction {
 };
 
 /**
-* @brief Variable de la expresión aritmética
+* @brief Variable de la expresiï¿½n aritmï¿½tica
 */
 struct Variable {
 	string name; /*!< Nombre de la variable */
@@ -97,20 +97,20 @@ struct Variable {
 };
 
 /**
-* @brief Expresión aritmética de una variable
+* @brief Expresiï¿½n aritmï¿½tica de una variable
 */
 class expression {
 public:
 	/**
-	* @brief Crea una expresión a partir de una cadena de caracteres
-	* @param exprText Texto de la expresión en notación infija
+	* @brief Crea una expresiï¿½n a partir de una cadena de caracteres
+	* @param exprText Texto de la expresiï¿½n en notaciï¿½n infija
 	*/
 	expression(string exprText): expression(exprText, defaultFunctions()) {
 	}
 	
 	/**
-	* @brief Crea una expresión a partir de una cadena de caracteres y un conjunto de funciones personalizadas
-	* @param exprText Texto de la expresión en notación infija
+	* @brief Crea una expresiï¿½n a partir de una cadena de caracteres y un conjunto de funciones personalizadas
+	* @param exprText Texto de la expresiï¿½n en notaciï¿½n infija
 	* @param funcs Vector de funciones personalizadas
 	*/
 	expression(string exprText, vector<CustomFunction> funcs): text(exprText), functions(funcs) {
@@ -147,6 +147,11 @@ public:
 	vector<CustomFunction> defaultFunctions() {
 		return {
 			{ "sin" ,
+				[](double x) -> double {
+					return sin(x);
+				}
+		},
+		{ "sen" ,
 				[](double x) -> double {
 					return sin(x);
 				}
@@ -201,8 +206,8 @@ public:
 	}
 	
 	/**
-	* @brief Verifica si la expresión estó bien balanceada
-	* @return verdadero si los paróntesis estón balanceados, falso en caso contrario
+	* @brief Verifica si la expresiï¿½n estï¿½ bien balanceada
+	* @return verdadero si los parï¿½ntesis estï¿½n balanceados, falso en caso contrario
 	*/
 	bool checkParenthesis() {
 		int cnt = 0;
@@ -225,17 +230,17 @@ public:
 	}
 	
 	/**
-	* @brief Retorna la condición de balance de paróntesis
-	* @return Verdadero si los paróntesis estón balanceados
+	* @brief Retorna la condiciï¿½n de balance de parï¿½ntesis
+	* @return Verdadero si los parï¿½ntesis estï¿½n balanceados
 	*/
 	bool isBalanced() {
 		return balanced;
 	}
 	
 	/**
-	* @brief Verifica si una cadena es un operador aritmótico válido
+	* @brief Verifica si una cadena es un operador aritmï¿½tico vï¿½lido
 	* @param str Cadena a verificar
-	* @return Verdadero si la cadena es un operador aritmótico válido
+	* @return Verdadero si la cadena es un operador aritmï¿½tico vï¿½lido
 	*/
 	bool isOperator(string str) {
 		return (
@@ -249,9 +254,9 @@ public:
 	}
 	
 	/**
-	* @brief Verifica si una cadena es un nómero válido
+	* @brief Verifica si una cadena es un nï¿½mero vï¿½lido
 	* @param str Cadena a verificar
-	* @return Verdadero si la cadena representa un nómero válido
+	* @return Verdadero si la cadena representa un nï¿½mero vï¿½lido
 	*/
 	bool isNumber(string str)
 	{
@@ -327,27 +332,27 @@ public:
 	}
 	
 	/**
-	* @brief Retorna la representación en cadena de la expresión
-	* @return Representación en cadena de la expresión
+	* @brief Retorna la representaciï¿½n en cadena de la expresiï¿½n
+	* @return Representaciï¿½n en cadena de la expresiï¿½n
 	*/
 	string str() {
 		return tokensStr;
 	}
 	
 	/**
-	* @brief Retorna la representación en cadena de la expresión en RPN
-	* @return Representación en RPN (Reverse Polish Notation) de la expresión
+	* @brief Retorna la representaciï¿½n en cadena de la expresiï¿½n en RPN
+	* @return Representaciï¿½n en RPN (Reverse Polish Notation) de la expresiï¿½n
 	*/
 	string rpnstr() {
 		return rpnStr;
 	}
 	
 	/**
-	* @brief Calcula el resultado de una operación binaria
+	* @brief Calcula el resultado de una operaciï¿½n binaria
 	* @param a Primer operando
 	* @param b Segundo operando
 	* @param op Operando
-	* @return Resultado de la operación, NAN si no es válida
+	* @return Resultado de la operaciï¿½n, NAN si no es vï¿½lida
 	*/
 	double calculate(double a, double b, string op){
 		if (op == "+") {
@@ -365,10 +370,10 @@ public:
 	}
 		
 		/**
-		* @brief Calcula el resultado de una operación unaria
-		* @param x Valor al cual se aplica la operación
+		* @brief Calcula el resultado de una operaciï¿½n unaria
+		* @param x Valor al cual se aplica la operaciï¿½n
 		* @param op Operando
-		* @return Resultado de la operación, NAN si no es válida
+		* @return Resultado de la operaciï¿½n, NAN si no es vï¿½lida
 		*/
 		double calculateUnary(double x, string op) {
 			if (op == "~") {
@@ -380,7 +385,7 @@ public:
 		/**
 		* @brief Calcula la precedencia de un operador
 		* @param op Operador
-		* @return Precedencia (1 para suma y resta, 2 para producto y división, 3 para potencia y negación
+		* @return Precedencia (1 para suma y resta, 2 para producto y divisiï¿½n, 3 para potencia y negaciï¿½n
 		*/
 		int precedence(string op){
 			if(op == "+"||op == "-") {
@@ -419,10 +424,10 @@ public:
 			}
 			
 			/**
-			* @brief Verifica si un nombre dado corresponde a una función
+			* @brief Verifica si un nombre dado corresponde a una funciï¿½n
 			* @param name Nombre a verificar
-			* @param func Referencia a la función obtenida, si existe
-			* @return Verdadero si la función estó definida, falso en caso contrario
+			* @param func Referencia a la funciï¿½n obtenida, si existe
+			* @return Verdadero si la funciï¿½n estï¿½ definida, falso en caso contrario
 			*/
 			bool isFunction(string name, function<double(double)> & func) {
 				for (auto & f : functions) {
@@ -436,7 +441,7 @@ public:
 			}
 			
 			/**
-			* @brief Separa los elementos de la expresión
+			* @brief Separa los elementos de la expresiï¿½n
 			* @return Vector de cadenas con los elementos separados
 			*/
 			vector<string> getTokens() {
@@ -483,9 +488,9 @@ public:
 			}
 			
 			/**
-			* @brief Obtiene la representación RPN de la expresión original
+			* @brief Obtiene la representaciï¿½n RPN de la expresiï¿½n original
 			* @param tokens Vector de elementos separados
-			* @return Vector de elementos de la expresión en Notación Reversa Polaca (RPN)
+			* @return Vector de elementos de la expresiï¿½n en Notaciï¿½n Reversa Polaca (RPN)
 			*/
 			vector<string> getRPN(vector<string> tokens) {
 				
@@ -590,13 +595,13 @@ public:
 					}
 				}
 				
-				// rpn almacena la representación RPN de la expresión
+				// rpn almacena la representaciï¿½n RPN de la expresiï¿½n
 				return rpn;
 			}
 			
 			/**
 			* @brief Sobrecarga del operador ()
-			* @return Resultado de evaluar la expresión
+			* @return Resultado de evaluar la expresiï¿½n
 			*/
 			double operator()() {
 				return eval();
@@ -604,8 +609,8 @@ public:
 			
 			/**
 			* @brief Sobrecarga del operador () sobre x
-			* @param val Valor de la variable x de la expresión
-			* @return Resultado de evaluar la expresión
+			* @param val Valor de la variable x de la expresiï¿½n
+			* @return Resultado de evaluar la expresiï¿½n
 			*/
 			double operator()(double val) {
 				return eval(val);
@@ -614,15 +619,15 @@ public:
 			/**
 			* @brief Sobrecarga del operador () sobre variables
 			* @param vars Arreglo de variables a reemplazar
-			* @return Resultado de evaluar la expresión
+			* @return Resultado de evaluar la expresiï¿½n
 			*/
 			double operator()(vector<Variable> vars) {
 				return eval(vars);
 			}
 			
 			/**
-			* @brief Evalóa la expresión usando las variables por defecto
-			* @return Resultado de evaluar la expresión
+			* @brief Evalï¿½a la expresiï¿½n usando las variables por defecto
+			* @return Resultado de evaluar la expresiï¿½n
 			*/
 			double eval() {
 				vector<Variable> vars = defaultVariables();
@@ -630,9 +635,9 @@ public:
 			}
 			
 			/**
-			* @brief Evalóa la expresión para un valor de x
-			* @param val Valor para una única variable llamada x
-			* @return Resultado de la expresión
+			* @brief Evalï¿½a la expresiï¿½n para un valor de x
+			* @param val Valor para una ï¿½nica variable llamada x
+			* @return Resultado de la expresiï¿½n
 			*/
 			double eval(double val) {
 				
@@ -654,9 +659,9 @@ public:
 			}
 			
 			/**
-			* @brief Evalóa la expresión para una un más variables
+			* @brief Evalï¿½a la expresiï¿½n para una un mï¿½s variables
 			* @param vars Vector de variables
-			* @return Resultado de la expresión
+			* @return Resultado de la expresiï¿½n
 			*/
 			double eval(vector<Variable> vars) {
 				return evalRPN(rpn, vars);
@@ -664,10 +669,10 @@ public:
 			
 			
 			/**
-			* @brief Evalóa la expresión para una un más variables y una o más funciones
-			* @param rpn Expresión (vector de cadenas) en RPN
+			* @brief Evalï¿½a la expresiï¿½n para una un mï¿½s variables y una o mï¿½s funciones
+			* @param rpn Expresiï¿½n (vector de cadenas) en RPN
 			* @param vars Vector de variables
-			* @return Resultado de la expresión
+			* @return Resultado de la expresiï¿½n
 			*/
 			double evalRPN(vector<string> rpn, vector<Variable> vars) {
 				double result = NAN;
@@ -727,12 +732,12 @@ public:
 			}
 			
 private:
-				string text; /*!< Texto original de la expresión */
+				string text; /*!< Texto original de la expresiï¿½n */
 				vector<CustomFunction> functions; /*!< Vector de funciones personalizadas */
-				vector<string> tokens; /*!< Elementos separados de la expresión */
-				string tokensStr; /*!< Cadena de texto de la expresión */
-				vector<string> rpn; /*!< Elementos separados de la expresión en RPN */
-				string rpnStr; /*!< Cadena de texto de la expresión  en RPN */
+				vector<string> tokens; /*!< Elementos separados de la expresiï¿½n */
+				string tokensStr; /*!< Cadena de texto de la expresiï¿½n */
+				vector<string> rpn; /*!< Elementos separados de la expresiï¿½n en RPN */
+				string rpnStr; /*!< Cadena de texto de la expresiï¿½n  en RPN */
 				bool balanced; /*!< Verdadero si los parentesis se encuentran balanceados */
 };
 

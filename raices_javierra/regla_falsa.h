@@ -37,6 +37,13 @@ namespace raices
             // solucion a retornar
             solucion sol;
 
+            //verificar que se cumpla TVI
+            if (f(xi) * f(xs) > 0)
+            {
+                cout << "No se cumple el teorema del valor intermedio" << endl;
+                return sol;
+            }
+
             // paso 1
             int i = 1;
             // paso 2 calcular la primera aproximacion y evaluar el subintervalo

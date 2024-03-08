@@ -21,6 +21,15 @@ namespace raices
         }
         solucion encontrar (double p0,double tol, int n){
             solucion sol;
+
+            // verificar los extremos e intervalo
+            if (es_raiz(f, p0))
+            {
+                sol.raiz = p0;
+                return sol;
+            }
+            
+
             //paso 1
             int i=1;
 

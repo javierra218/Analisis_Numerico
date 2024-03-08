@@ -22,8 +22,9 @@ using std::string;
 
 using raices::aproximacion;
 using raices::solucion;
+using raices::es_raiz;
 
-namespace raices
+    namespace raices
 {
 
     class biseccion
@@ -52,7 +53,19 @@ namespace raices
             // solucion a retornar
             solucion sol;
 
-            //verificar que se cumpla TVI
+            // verificar los extremos e intervalo
+            if (es_raiz(f, xa))
+            {
+                sol.raiz = xa;
+                return sol;
+            }
+            if (es_raiz(f, xb))
+            {
+                sol.raiz = xb;
+                return sol;
+            }
+
+            // verificar que se cumpla TVI
             if (f(xa) * f(xb) > 0)
             {
                 cout << "No se cumple el teorema del valor intermedio" << endl;
@@ -81,9 +94,8 @@ namespace raices
 
                 sol.agregar(ap);
 
-
                 // paso 5
-                if (fabs(f(xNueva)) < DBL_EPSILON || ap.erp < tol)
+                if (es_raiz(f, xNueva) || ap.erp < tol)
                 {
                     // Solucion encontrada, guardar la raiz y retornar la solucion
                     sol.raiz = xNueva;

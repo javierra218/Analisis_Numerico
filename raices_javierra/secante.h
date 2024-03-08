@@ -41,6 +41,19 @@ namespace raices {
                            int n) {
             // Solucion a retornar
             solucion sol;
+
+            // verificar los extremos e intervalo
+            if (es_raiz(f, x0))
+            {
+                sol.raiz = x0;
+                return sol;
+            }
+            if (es_raiz(f, x1))
+            {
+                sol.raiz = x1;
+                return sol;
+            }
+
             // Paso 1
             int i = 1;
             while(i <= n) {

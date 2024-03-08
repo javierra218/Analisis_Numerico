@@ -64,6 +64,10 @@ namespace raices
         }
     }
 
+    bool es_raiz(expression & f, double x){
+        return fabs(f(x))<=DBL_EPSILON;
+    }
+
 };
 
 #endif

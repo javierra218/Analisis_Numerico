@@ -7,10 +7,12 @@
 #include "newton_raphson.h"
 #include "casos.h"
 #include "secante.h"
+#include "newton_raphsong.h"
 
 using raices::aproximacion;
 using raices::biseccion;
 using raices::imprimir_solucion;
+using raices::newton_raphsong;
 using raices::newton_raphson;
 using raices::regla_falsa;
 using raices::secante;
@@ -233,40 +235,17 @@ void caso_5() {
 void caso_6()
 {
 	string str_func = "x^3 -(5*(x^2)) + (7*x) - 3";
-	
 
-	double xInf = -1.0f; // extremo inferior
-	double xSup = 0.0f; // extremo superior
-	double tol = 1.0f;	// error relativo porcentual
-	int n = 100;		// numero maximo de iteraciones
+	cout << "Solucion por newton_raphson generalizado" << endl;
+	double p0 = 2.33f;
+	double tol = 0.01f;
+	int n = 100;
+	string str_dfunc = "3*(x^2) - 10*x + 7";
+	string str_d2func = "6*x - 10";
+	newton_raphsong nrg(str_func, str_dfunc, str_d2func);
 
-	cout << "Funcion: " << str_func << endl;
-	cout << "Intervalo: [" << xInf << " ... " << xSup << "]" << endl;
-
-	cout << "Solucion por biseccion" << endl;
-	// crear una instancia del metodo
-	biseccion b(str_func);
-	// encotrar la raiz en el intervalo [xa, xb]
-	solucion sol = b.encontrar(xInf, xSup, tol, n);
-	imprimir_solucion(sol);
-
-	// parametros para el metodo de la regla falsa
-	//  xInf=0.5f;//extremo inferior
-	//  xSup=2.0f;//extremo superior
-
-	cout << "Solucion por regla_falsa" << endl;
-	cout << "Intervalo"<<xInf<<"..."<<xSup<<endl;
-	// crear una instancia del metodo
-	regla_falsa rf(str_func);
-	// encotrar la raiz en el intervalo [xa, xb]
-	solucion solRf = rf.encontrar(xInf, xSup, tol, n);
-	imprimir_solucion(solRf);
+	solucion solNrg = nrg.encontrar(p0, tol, n);
+	imprimir_solucion(solNrg);
 
 
-	cout << "Solucion por newton_raphson" << endl;
-	double p0 = xInf;
-	string str_dfunc = "3*x^2-10*x+7";
-	newton_raphson nr(str_func, str_dfunc);
-	solucion solNr = nr.encontrar(p0, tol, n);
-	imprimir_solucion(solNr);
 }

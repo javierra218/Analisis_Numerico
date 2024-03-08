@@ -7,6 +7,7 @@ using std::string;
 
 using raices::aproximacion;
 using raices::solucion;
+using raices::es_raiz;
 
 namespace raices
 {
@@ -36,6 +37,18 @@ namespace raices
 
             // solucion a retornar
             solucion sol;
+
+            // verificar los extremos e intervalo
+            if (es_raiz(f, xi))
+            {
+                sol.raiz = xi;
+                return sol;
+            }
+            if (es_raiz(f, xs))
+            {
+                sol.raiz = xs;
+                return sol;
+            }
 
             //verificar que se cumpla TVI
             if (f(xi) * f(xs) > 0)

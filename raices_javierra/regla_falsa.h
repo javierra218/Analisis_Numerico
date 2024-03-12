@@ -41,12 +41,12 @@ namespace raices
             // verificar los extremos e intervalo
             if (es_raiz(f, xi))
             {
-                sol.raiz = xi;
+                sol.establecer(xi);
                 return sol;
             }
             if (es_raiz(f, xs))
             {
-                sol.raiz = xs;
+                sol.establecer(xs);
                 return sol;
             }
 
@@ -84,7 +84,7 @@ namespace raices
                 if (fabs(f(xrNueva)) < DBL_EPSILON || ap.erp < tol)
                 {
                     // Solucion encontrada, guardar la raiz y retornar la solucion
-                    sol.raiz = xrNueva;
+                    sol.establecer(xrNueva);
                     return sol;
                 }
                 // paso 6

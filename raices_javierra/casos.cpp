@@ -8,6 +8,7 @@
 #include "casos.h"
 #include "secante.h"
 #include "newton_raphsong.h"
+#include "muller.h"
 
 using raices::aproximacion;
 using raices::biseccion;
@@ -17,9 +18,12 @@ using raices::newton_raphson;
 using raices::regla_falsa;
 using raices::secante;
 using raices::solucion;
+using raices::muller;
 
 using std::cout;
 using std::endl;
+
+#define TOL 1e-5f
 
 void caso_1()
 {
@@ -27,7 +31,7 @@ void caso_1()
 
 	double xInf = 1.6f; // extremo inferior
 	double xSup = 3.0f; // extremo superior
-	double tol = 1.0f;	// error relativo porcentual
+	double tol = TOL;	// error relativo porcentual
 	int n = 100;		// numero maximo de iteraciones
 
 	cout << "Funcion: " << str_func << endl;
@@ -72,6 +76,21 @@ void caso_1()
     //Imprimir la solucion
     imprimir_solucion(solSec);
 
+
+	///Metodo de Muller
+	 x0 = 0.5f;
+	 x1 = 2.0f;
+	double x2 = 4.0f;
+
+	cout << "Solucion por el metodo de Muller:" << endl;
+	cout << "Puntos de la parabola: "<<x0<<" , "<<x1<<" , "<<x2<<endl;
+    //Crear una instancia del metodo
+    muller mul(str_func);
+    //Encontrar la raiz en el intervalo dado
+    solucion solMuller= mul.encontrar(x0, x1,x2, tol, n);
+    //Imprimir la solucion
+    imprimir_solucion(solMuller);
+
 }
 
 
@@ -81,7 +100,7 @@ void caso_2()
 
 	double xInf = -0.5f; // extremo inferior
 	double xSup = 0.5f; // extremo superior
-	double tol = 1.0f;	// error relativo porcentual
+	double tol = TOL;	// error relativo porcentual
 	int n = 100;		// numero maximo de iteraciones
 
 	cout << "Funcion: " << str_func << endl;
@@ -135,7 +154,7 @@ void caso_3()
 
 	double xInf = 1.2f; // extremo inferior
 	double xSup = 2.0f; // extremo superior
-	double tol = 1.0f;	// error relativo porcentual
+	double tol = TOL;	// error relativo porcentual
 	int n = 100;		// numero maximo de iteraciones
 
 	cout << "Funcion: " << str_func << endl;
@@ -186,7 +205,7 @@ void caso_4() {
     string str_func = "e^~(x^2) - x";
     double x0 = -0.5f; //Extremo inferior
     double x1 = 0.5f; //Extremo superior
-    double tol = 1.0f; //Error relativo porcentual
+    double tol = TOL; //Error relativo porcentual
     int n = 100;
     
     /** Probar el evaluador de expresiones
@@ -211,7 +230,7 @@ void caso_5() {
     string str_func = "2*(e^(~x)) - sen(x)";
     double x0 = 1.2f; //Extremo inferior
     double x1 = 2.0f; //Extremo superior
-    double tol = 1.0f; //Error relativo porcentual
+    double tol = TOL; //Error relativo porcentual
     int n = 100;
     
     /** Probar el evaluador de expresiones
@@ -238,7 +257,7 @@ void caso_6()
 
 	cout << "Solucion por newton_raphson generalizado" << endl;
 	double p0 = 2.33f;
-	double tol = 0.01f;
+	double tol = TOL;
 	int n = 100;
 	string str_dfunc = "3*(x^2) - 10*x + 7";
 	string str_d2func = "6*x - 10";

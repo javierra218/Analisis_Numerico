@@ -45,12 +45,12 @@ namespace raices {
             // verificar los extremos e intervalo
             if (es_raiz(f, x0))
             {
-                sol.raiz = x0;
+                sol.establecer(x0);
                 return sol;
             }
             if (es_raiz(f, x1))
             {
-                sol.raiz = x1;
+                sol.establecer(x1);
                 return sol;
             }
 
@@ -64,7 +64,7 @@ namespace raices {
                 sol.agregar(ap);
                 //Paso 3
                 if(ap.erp < tol) {
-                    sol.raiz = x2;
+                    sol.establecer(x2);
                     return sol;
                 }
                 //Paso 4

@@ -26,7 +26,7 @@ namespace raices
             // verificar los extremos e intervalo
             if (es_raiz(f, p0))
             {
-                sol.raiz = p0;
+                sol.establecer(p0);
                 return sol;
             }
             
@@ -50,7 +50,7 @@ namespace raices
                 // paso 4
                 if (ap.erp < tol)
                 {
-                    sol.raiz = p;
+                    sol.establecer(p);
                     return sol;
                 }
                 // paso 5

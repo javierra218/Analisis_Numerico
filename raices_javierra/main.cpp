@@ -10,7 +10,7 @@ using std::string;
 int main()
 {
 
-	//  caso_1();
+	caso_1();
 
 	// caso_2();
 
@@ -18,9 +18,9 @@ int main()
 
 	//  caso_4();
 
-	//caso_5();
+	// caso_5();
 
-	caso_6();
+	// caso_6();
 
 	return 0;
 }

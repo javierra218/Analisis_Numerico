@@ -56,12 +56,12 @@ using raices::es_raiz;
             // verificar los extremos e intervalo
             if (es_raiz(f, xa))
             {
-                sol.raiz = xa;
+                sol.establecer(xa);
                 return sol;
             }
             if (es_raiz(f, xb))
             {
-                sol.raiz = xb;
+                sol.establecer(xb);
                 return sol;
             }
 
@@ -98,7 +98,7 @@ using raices::es_raiz;
                 if (es_raiz(f, xNueva) || ap.erp < tol)
                 {
                     // Solucion encontrada, guardar la raiz y retornar la solucion
-                    sol.raiz = xNueva;
+                    sol.establecer(xNueva);
                     return sol;
                 }
                 // paso 6

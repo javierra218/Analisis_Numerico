@@ -35,7 +35,12 @@ namespace raices
         {
             aproximaciones.push_back(a);
         }
+		void establecer(double val){
+			raiz=val;
+		}
     };
+
+    
 
     void imprimir_solucion(solucion &sol)
     {

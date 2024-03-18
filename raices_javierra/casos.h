@@ -31,4 +31,11 @@ void caso_5();
 */
 void caso_6();
 
+/**
+@brief primerParcial. 5 * (2^2 * acos_alt((2 - x) / 2) - (2 - x) * sqrt(2 * 2 * x - x^2)) - 8.5
+*/
+void primerParcial();
+
+
+
 #endif

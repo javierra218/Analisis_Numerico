@@ -161,6 +161,16 @@ public:
 				return cos(x);
 			}
 		},
+		{"arcos",
+			[](double x) -> double {
+				return acos(x);
+			}
+		},
+		{ "acos_alt" ,
+    		[](double x) -> double {
+        		return 3.141592654f / 2 - atan(x / sqrt(1 - x * x));
+    		}
+		},
 				{ "tan" ,
 					[](double x) -> double {
 						return tan(x);

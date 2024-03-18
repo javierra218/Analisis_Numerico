@@ -270,8 +270,8 @@ void caso_Redlich_Kwong()
 {	
 	string str_func = "( (115.514/(x-0.0019)) - (12.6126/(x*(x+0.0019)*(223^0.5))) - 65000 )";
 	
-	double xInf = 0.00250f; // extremo inferior
-	double xSup = 0.00290f; // extremo superior
+	double xInf = 0.00270f; // extremo inferior
+	double xSup = 0.00280f; // extremo superior
 	double tol = TOL;	// error relativo porcentual
 	int n = 100;		// numero maximo de iteraciones
 	
@@ -305,9 +305,9 @@ void caso_Redlich_Kwong()
 
 
 	///Metodo de Muller
-	double x0 = 0.001f;
-	double x1 = 0.002f;
-	double x2 = 0.003f;
+	double x0 = 0.00270f;
+	double x1 = 0.00275f;
+	double x2 = 0.00280f;
 
 	cout << "Solucion por el metodo de Muller:" << endl;
 	cout << "Puntos de la parabola: "<<x0<<" , "<<x1<<" , "<<x2<<endl;

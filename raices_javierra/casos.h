@@ -31,7 +31,7 @@ void caso_5();
 */
 void caso_6();
 /**
-@brief Caso Redlich Kwong
+@brief Caso Redlich Kwong para: ( (115.514/(x-0.0019)) - (12.6126/(x*(x+0.0019)*(223^0.5))) - 65000 )
 */
 void caso_Redlich_Kwong();
 #endif

@@ -93,7 +93,6 @@ void caso_1()
 
 }
 
-
 void caso_2()
 {
     string str_func = "x^3+4*x^2-10";
@@ -265,6 +264,57 @@ void caso_6()
 
 	solucion solNrg = nrg.encontrar(p0, tol, n);
 	imprimir_solucion(solNrg);
+}
+
+void caso_Redlich_Kwong()
+{	
+	string str_func = "( (115.514/(x-0.0019)) - (12.6126/(x*(x+0.0019)*(223^0.5))) - 65000 )";
+	
+	double xInf = 0.00250f; // extremo inferior
+	double xSup = 0.00290f; // extremo superior
+	double tol = TOL;	// error relativo porcentual
+	int n = 100;		// numero maximo de iteraciones
+	
+	cout << "Funcion: " << str_func << endl;
+	cout << "Intervalo: [" << xInf << " ... " << xSup << "]" << endl;
+	
+	cout << "Solucion por biseccion" << endl;
+	// crear una instancia del metodo
+	biseccion b(str_func);
+	// encotrar la raiz en el intervalo [xa, xb]
+	solucion sol = b.encontrar(xInf, xSup, tol, n);
+	imprimir_solucion(sol);
 
 
+	cout << "Solucion por regla_falsa" << endl;
+	// crear una instancia del metodo
+	regla_falsa rf(str_func);
+	// encotrar la raiz en el intervalo [xa, xb]
+	solucion solRf = rf.encontrar(xInf, xSup, tol, n);
+	imprimir_solucion(solRf);
+
+	
+	cout << "Solucion por el metodo de secante:" << endl;
+	cout << "Intervalo "<<xInf<<"..."<<xSup<<endl;
+    //Crear una instancia del metodo
+    secante sec(str_func);
+    //Encontrar la raiz en el intervalo dado
+    solucion solSec= sec.encontrar(xInf, xSup, tol, n);
+    //Imprimir la solucion
+    imprimir_solucion(solSec);
+
+
+	///Metodo de Muller
+	double x0 = 0.001f;
+	double x1 = 0.002f;
+	double x2 = 0.003f;
+
+	cout << "Solucion por el metodo de Muller:" << endl;
+	cout << "Puntos de la parabola: "<<x0<<" , "<<x1<<" , "<<x2<<endl;
+    //Crear una instancia del metodo
+    muller mul(str_func);
+    //Encontrar la raiz en el intervalo dado
+    solucion solMuller= mul.encontrar(x0, x1,x2, tol, n);
+    //Imprimir la solucion
+    imprimir_solucion(solMuller);
 }

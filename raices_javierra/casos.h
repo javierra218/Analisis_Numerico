@@ -1,6 +1,6 @@
 #ifndef CASOS_H
 #define CASOS_H
-
+#include "casos.cpp"
 /**
 @brief Caso 1. e^~(x) - ln(x)
 */
@@ -30,5 +30,8 @@ void caso_5();
 @brief Caso 6 (nrg). x^3 -(5*(x^2)) + (7*x) - 3
 */
 void caso_6();
-
+/**
+@brief Caso Redlich Kwong
+*/
+void caso_Redlich_Kwong();
 #endif

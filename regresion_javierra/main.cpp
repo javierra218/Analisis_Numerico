@@ -12,13 +12,18 @@ using regresion::modelo_lineal;
 using regresion::potencia;
 using regresion::modelo_potencia;
 
+using regresion::exponencial;
+using regresion::modelo_exponencial;
+
 void caso_1_lineal_simple();
 void caso_1_potenia();
+void caso_1_exponencial();
 
 int main (int argc, char *argv[]) {
 
 	// caso_1_lineal_simple();
-	caso_1_potenia();
+	//caso_1_potenia();
+	caso_1_exponencial();
 	
 	return 0;
 }
@@ -47,6 +52,21 @@ void caso_1_potenia(){
 
 	// double y_estimado = regresion.estimar(2.5f);
 	double p_x=45.0f;
+
+	double y_est=regresion.estimar(p_x);
+
+	cout<<"x= "<<p_x<<"y estimado: "<<y_est<<endl;
+}
+
+void caso_1_exponencial(){
+	vector<double> x = {12.0f,41.0f,93.0f,147.0f,204.0f,264.0f,373.0f,509.0f,773.0f};
+	vector<double> y = {930.0f,815.0f,632.0f,487.0f,370.0f,265.0f,147.0f,76.0f,17.0f};
+
+	exponencial regresion(x,y);
+	regresion.obtener_modelo().imprimir();
+
+	// double y_estimado = regresion.estimar(2.5f);
+	double p_x=93.0f;
 
 	double y_est=regresion.estimar(p_x);
 

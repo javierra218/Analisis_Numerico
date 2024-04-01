@@ -5,6 +5,7 @@
 #include <cmath>
 #include <iostream>
 #include <iomanip>
+#include "algorithm"
 
 using std::cout;
 using std::endl;
@@ -46,6 +47,40 @@ namespace regresion
 			return (b1 * p_x) + b0;
 		}
 	};
+
+
+	/**
+	 * @brief Modelo linealizado mediante funcion de la potencia.
+	 * 
+	 */
+	struct modelo_potencia
+	{
+		modelo_lineal lineal; /**< Modelo de los datos linealizados. */
+		double a; /**< Potencia de x. */
+		double c; /**< Coeficiente de la potencia. */
+
+		void imprimir()
+		{
+			cout << "y= "
+				<< c
+				<< " * x^"
+				<< a
+				<< endl;
+			cout << "Desviacion Estándar: "<< lineal.sy << endl;
+			cout << "Error Estándar de aproximacion: "<< lineal.syx << endl;
+			cout << "Coeficiente de determinacion r2: "<< lineal.r2 << endl;
+		}
+
+		double estimar(double p_x)
+		{
+			return c * pow(p_x, a);
+		}
+
+	};
+	
+
+
+
 	/**
 	* @brief Represents a simple linear regression model.
 	*/
@@ -138,6 +173,55 @@ namespace regresion
 
 			}
 	};
+
+	class potencia{
+		public:
+
+			potencia(vector<double> v_x, vector<double> v_y) : x(v_x), y(v_y)
+			{
+				calcular_modelo();
+			}
+			double estimar(double p_x)
+			{
+				size_t n = x.size();
+				if (n == 0 || p_x < x[0] || p_x > x[n - 1])
+				{
+					return NAN;
+				}
+				return modelo.estimar(p_x);
+			}
+			modelo_potencia obtener_modelo()
+			{
+				return modelo;
+			}
+	
+		private:
+			vector<double>x; /*!< variable independiente */
+			vector<double>y; /*!< variable dependiente */
+			modelo_potencia modelo; /*!< Modelo de regresion potencia */
+
+			void calcular_modelo()
+			{
+				//1. transformat x = log(x)
+				vector<double> X(x);
+
+				std::for_each(X.begin(), X.end(), [](double &val ){val = log10(val);}); 
+
+				//2. transformat y = log(y)
+				vector<double> Y(y);
+
+				std::for_each(Y.begin(), Y.end(), [](double &val ){val = log10(val);});
+				//3. crear una instancia de la clase lineal_simple,pasandole los datos transformados
+				lineal_simple reg_lineal(X,Y);
+				//4. obtener el modelo lineal y asignarlo a la variable miembro 'modelo.lineal'
+				modelo.lineal = reg_lineal.obtener_modelo();
+				//5. con base en el modelo obtenido calcular c y a
+				modelo.c = pow(10.0f,modelo.lineal.b0);
+				modelo.a = modelo.lineal.b1;
+			}
+
+	};
+
 };
 
 #endif

@@ -13,7 +13,6 @@ using std::vector;
 
 namespace regresion
 {
-	
 
 	struct modelo_lineal
 	/**
@@ -23,8 +22,8 @@ namespace regresion
 	 * It consists of two variables: b0 (the intercept) and b1 (the coefficient of x).
 	 */
 	{
-		vector<double> x;	  /**< The independent variable values. */
-		vector<double> y;	  /**< The dependent variable values. */
+		vector<double> x; /**< The independent variable values. */
+		vector<double> y; /**< The dependent variable values. */
 		double b0 = NAN;  /**< Termino independiente */
 		double b1 = NAN;  /**< Coeficiente de x */
 		double st = 0.0f; /**< Sumatoria de la diferencia  */
@@ -58,7 +57,7 @@ namespace regresion
 			{
 				return NAN;
 			}
-			
+
 			return (b1 * p_x) + b0;
 		}
 
@@ -116,8 +115,6 @@ namespace regresion
 		}
 	};
 
-	
-
 	/**
 	 * @brief Modelo linealizado mediante funcion exponencial.
 	 *
@@ -143,8 +140,7 @@ namespace regresion
 
 		double estimar(double p_x)
 		{
-			
-			
+
 			return c * exp(a * p_x);
 		}
 	};
@@ -157,12 +153,10 @@ namespace regresion
 	public:
 		lineal_simple(vector<double> v_x, vector<double> v_y) : modelo(v_x, v_y)
 		{
-			
 		}
 
 		double estimar(double p_x)
 		{
-			
 
 			return modelo.estimar(p_x);
 		}
@@ -172,14 +166,12 @@ namespace regresion
 		}
 
 	private:
-		
 		modelo_lineal modelo; /**< Modelo de regresion Lineal. */
-		/**
-		 * Calculates the linear model.
-		 *
-		 * @return The calculated linear model.
-		 */
-		
+							  /**
+							   * Calculates the linear model.
+							   *
+							   * @return The calculated linear model.
+							   */
 	};
 
 	class potencia
@@ -207,8 +199,6 @@ namespace regresion
 		vector<double> x;		/*!< variable independiente */
 		vector<double> y;		/*!< variable dependiente */
 		modelo_potencia modelo; /*!< Modelo de regresion potencia */
-
-		
 	};
 
 	/**
@@ -236,15 +226,14 @@ namespace regresion
 		}
 
 	private:
-		vector<double> x;		/*!< variable independiente */
-		vector<double> y;		/*!< variable dependiente */
+		vector<double> x;		   /*!< variable independiente */
+		vector<double> y;		   /*!< variable dependiente */
 		modelo_exponencial modelo; /*!< Modelo de regresion potencia */
 
 		void calcular_modelo()
 		{
 			// 1. X = x (no se transforma)
 			vector<double> X(x);
-
 
 			// 2. transformat y = log(y)
 			vector<double> Y(y);
@@ -311,7 +300,6 @@ namespace regresion
 		{
 			return c * pow(p_x, a);
 		}
-		
 	};
 
 };

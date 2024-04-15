@@ -4,7 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
+#include <string>
+#include <sstream>
 
+using std::ostringstream;
+using std::string;
 using std::vector;
 
 namespace interpolacion
@@ -28,6 +32,38 @@ namespace interpolacion
         }
 
         /**
+         * @brief Retorna el polinomio interpolante usando todos los puntos
+         *
+         * @return string
+         */
+        string polinomio()
+        {
+            // return "Todo el polinomio" ;
+            ostringstream s;
+            // s << "TODO ";
+            // s << "Polinomio : ";
+            if (b.size() == 0)
+            {
+                s << "No hay coeficientes";
+                return s.str();
+            }
+
+            s << b[0];
+
+            for (size_t i = 1; i < b.size(); i++)
+            {
+                s << (b[i] >= 0 ? "+" : "-") << fabs(b[i]);
+
+                for (size_t j = 0; j < i; j++)
+                {
+                    s << "( x " << (x[j] >= 0 ? "-" : "+") << fabs(x[j]) << " )";
+                }
+            }
+
+            return s.str();
+        }
+
+        /**
          * @brief calcular los coeficientes del polinomio interpolante
          *
          * @param x
@@ -38,29 +74,29 @@ namespace interpolacion
         {
             vector<double> coeficientes;
 
-            //Verificar que existan valores de x y y
-            if(x.size()==0 || x.size()!=y.size())
+            // Verificar que existan valores de x y y
+            if (x.size() == 0 || x.size() != y.size())
             {
                 return coeficientes;
             }
             size_t n = x.size();
 
-            //Reservar espacio para filas
+            // Reservar espacio para filas
             vector<vector<double>> F(n);
 
-            //inicializar las filas
+            // inicializar las filas
             for (size_t i = 0; i < n; i++)
             {
-                F[i].resize(n-i);
+                F[i].resize(n - i);
             }
 
-            //Llenar la primera columna
+            // Llenar la primera columna
             for (size_t i = 0; i < n; i++)
             {
                 F[i][0] = y[i];
             }
 
-            //llenar las demas columnas
+            // llenar las demas columnas
             for (size_t j = 1; j < n; j++)
             {
                 for (size_t i = 0; i < n - j; i++)
@@ -69,9 +105,9 @@ namespace interpolacion
                 }
             }
 
-            //Obtener la primera fila de la matriz
-            coeficientes=F[0];
-            
+            // Obtener la primera fila de la matriz
+            coeficientes = F[0];
+
             return coeficientes;
         }
 
@@ -89,6 +125,12 @@ namespace interpolacion
             {
                 return y_int;
             }
+
+            if(x_int < x[0] || x_int > x[x.size() - 1])
+            {
+                return y_int;
+            }
+
             // POST: Existe al menos un coeficiente
             y_int = b[0];
 

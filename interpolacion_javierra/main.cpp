@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include "lagrange.h"
+#include "spline3.h"
 
 using std::cout;
 using std::endl;
@@ -10,6 +11,7 @@ using std::vector;
 
 using interpolacion::lagrange;
 using interpolacion::newton;
+using interpolacion::spline3;
 
 /**
  * @brief Caso 1 Newton - diapositivas
@@ -35,13 +37,16 @@ void caso_1_lineal();
  */
 void caso_sodio();
 
+void caso_1_spline3();
+
 int main(int argc, char *argv[])
 {
 
 	// caso_1_newton();
 	// caso_1_lagrange();
 	// caso_1_lineal();
-	caso_sodio();
+	// caso_sodio();
+	caso_1_spline3();
 	return 0;
 }
 
@@ -139,4 +144,22 @@ void caso_sodio()
 
 	cout << "Newton f(" << x_int << ") = " << y_int_newton << endl;
 	cout << "Lagrange f(" << x_int << ") = " << y_int_lagrange << endl;
+}
+
+void caso_1_spline3()
+{
+	cout << "Interpolacion mediante trazadores cubicos" << endl;
+
+	vector<double> x{3.0f, 4.5f, 7.0f, 9.0f};
+	vector<double> y{2.5f, 1.0f, 2.5f, 0.5f};
+
+	// Crear una instancia de la clase newton
+	spline3 s(x, y);
+
+	// Interpolar un valor de x
+	double x_int = 5.0f;
+
+	double y_int = s.interpolar(x_int);
+
+	cout << "f(" << x_int << ") = " << y_int << endl;
 }

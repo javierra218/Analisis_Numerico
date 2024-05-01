@@ -69,61 +69,80 @@ namespace interpolacion
         }
 
         /**
-         * @brief calcula el valor interpolado usando un polinomio de grado especial 
+         * @brief calcula el valor interpolado usando un polinomio de grado especial
          * @return string
          */
 
-        double interpolar(double x_int, int grado){
-            if (grado >= x.size() || grado < 0){
+        double interpolar(double x_int, unsigned int grado)
+        {
+            if (grado >= x.size() || grado < 0)
+            {
                 return NAN;
             }
-            if (grado==0){
+            if (grado == 0)
+            {
                 return interpolar(x_int);
             }
+
+            /**\todo implementar la interpolacion de un valor con un grado*/
+
+            // 1. Si el grado del polinomio es impar
+            // la cantidad de puntos a tomar es par ( un solo sub-intervalo)
+            //      cantidad = grado + 1
+            //      1.1 Calcular los limites del sub-intervalo
+            //      i=posicion del siguiente dato a x_int
+            //      inicio = i - (cantidad/2)
+            //      fin = inicio + grado
+            //      TODO validar si inicio y fin son posiciones validas!!!
+            //      1.2 Crear un arreglo x_sub =x[inicio,fin]
+            //      1.3 Crear un arreglo y_sub =y[inicio,fin]
+            //      1.4 y_int = interpolar x_int con  x_sub y y_sub
+            // 2. Si el grado del polinomio es par
+            // En el peor caso tendremos dos sub_intervalos
+            // 2.1 Primer sub-intervalo:
+            //      inicio = i - ((grado/2)+1)
+            //      fin = inicio + grado
+            //      Si el intervalo es valido
+            //       y_int_sup = interpolar x_int con x[inicio,fin] y y[inicio,fin]
+            //      Sino:
+            //       y_int_sup = NAN
+            // 2.2 Segundo sub-intervalo:
+            //      inicio = i - ((grado/2))
+            //      fin = inicio + grado + 1
+            //      Si el intervalo es valido
+            //       y_int_inf = interpolar x_int con x[inicio,fin] y y[inicio,fin]
+            //      Sino:
+            //       y_int_inf = NAN
+            // 2.3  Si y_int_sup = NAN
+            //          retornar y_int_inf
+            //      fin si
+            // 2.4  Si y_int_inf = NAN
+            //          retornar y_int_sup
+            //      fin si
+            // 2.5  Calcular el error del sub_intervalo 1
+            //      tomar el dato adicionar por debajo del sub_intervalo 1
+            //      (suponiendo que se tiene un dato adicional)
+            //      calcular F[] con los datos del sub_intervalo 
+            //      Tomar el ultimo coeficiente F
+            //      error_sup = R * (x_int - x0) * (x_int - x1) * ... * (x_int - xn)
+            // 2.6  Calcular el error del sub_intervalo 2
+            //      tomar el dato adicionar por encima del sub_intervalo 2
+            //      (suponiendo que se tiene un dato adicional)
+            //      calcular F[] con los datos del sub_intervalo
+            //      Tomar el ultimo coeficiente F: R
+            //      error_inf = R * (x_int - x0) (x_int - x1) ... (x_int - xn)
+            // 2.7  Retornar y_int_sup o y_int_inf, el que tenga menor error
+            //      si fabs(error_sup) < fabs(error_inf)
+            //          retornar y_int_sup
+            //      sino
+            //          retornar y_int_inf
+            //      fin si
+
             
-            //1. si el grado de polinomio es impar
-            // La cantidad de puntos a tomar es par (un solo subintervalo)
-            // cantidad = grado + 1
-            // 1.1 calcular los limintes del subintervalo
-            // i = posicion  del siguiente dato a x_int
-            // inicio = i - (cantidad/2)
-            // fin = inicio+grado
-            // TODO validar si inicio y fin son posiciones validas
-            // 1.2  Crear un arreglo x_sub  = x[inicio, fin]
-            // 1.3  Crear un arreglo y_sub  = y[inicio, fin]
-            // 1.4  y=int= interpolar x_int con x_sub y y_sub
-            // 2. si el grado de polinomio es par
-            // en el peor caso tendremos dos subintervalos
-            // 2.1 primer subintervalo
-            // inicio = i -((grado/2)+1)
-            // fin = inicio + grado
-            // si el intervalo es valido
-            // y_int_sup = interpolar x_int con x[inicio, fin] y y[inicio, fin]
-            // sino: y_int_sup = NAN
-            // 2.2 segundo subintervalo
-            // inicio = i -((grado/2))
-            // fin = inicio + grado + 1
-            // si el intervalo es valido
-            // y_int_inf = interpolar x_int con x[inicio, fin] y y[inicio, fin]
-            // sino: y_int_inf = NAN
-            // 2.3 si y_int_sup = NAN  return y_int_inf
-            // 2.4 si y_int_inf = NAN  return y_int_sup
-            // 2.5 calcular el error del subintervalo 1
-            // tomar el dato adicional por debajo del subintervalo 1
-            // Calcular F[] con los datos del subintervalo tomar el ultimo coeficiente F: R
-            // error_sup = R * (x_int - x0)(x_int - x1)....
-            // 2.6 calcular el error del subintervalo 2
-            // tomar el dato adicional por encima del subintervalo 2
-            // Calcular F[] con los datos del subintervalo tomar el primer coeficiente F: R
-            // error_inf = R * (x_int - x0)(x_int - x1)....
-            // 2.7 retornar y_int_sup o y_int_inf dependiendo el que tenga el menor error
-            // si fabs(err_sup)<fabs(err_inf) return y_int_sup
-            // sino return y_int_inf
 
+            
 
-
-
-
+            return NAN;
 
 
         }
